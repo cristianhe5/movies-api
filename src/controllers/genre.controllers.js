@@ -29,7 +29,8 @@ const update = catchError(async(req, res) => {
         req.body,
         { where: {id}, returning: true }
     );
-    return res.json(genre);
+    if(genre[0] === 0) return res.sendStatus(404);
+    return res.json(genre[1][0]);
 });
 
 module.exports = {
